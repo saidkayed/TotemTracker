@@ -1,0 +1,9 @@
+## Title: TotemTracker
+## Notes: Tracks the totems of diffrent elements, and track players affected by totems(NOT COMPLETED YET)
+## Version: 0.5.0
+## Author: Sidadus
+## Interface: 11306
+
+
+
+Core.lua
