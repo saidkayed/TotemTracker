@@ -11,16 +11,15 @@ local expirationTimeA
 
 local frame = CreateFrame("Frame")
 
-frame:Show()
-
 ----------------FRAME----------------------------------------
+
 local f = CreateFrame("Frame", "Totem", UIParent)
 
 f:SetPoint("CENTER")
 
 f:SetFrameStrata("BACKGROUND")
 f:SetWidth(200) -- Set these to whatever height/width is needed 
-f:SetHeight(200) -- for your Texture
+f:SetHeight(80) -- for your Texture
 
 f:SetBackdrop({
     bgFile = "Interface/Tooltips/UI-Tooltip-Background",
@@ -28,7 +27,7 @@ f:SetBackdrop({
     edgeSize = 16,
     insets = {left = 4, right = 4, top = 4, bottom = 4}
 })
-f:SetBackdropColor(0, 0, 1, .5)
+f:SetBackdropColor(0, 0, 0, 1)
 
 f:SetMovable(true)
 f:EnableMouse(true)
@@ -48,7 +47,6 @@ f:SetScript("OnMouseUp", function(self, button)
 end)
 
 f:SetPoint("CENTER", 0, 0)
-f:Show()
 
 --------------------TEXT-----------------------------------------------
 
@@ -68,7 +66,7 @@ f.text:SetText("Fire          Earth         Water        Air")
 local t = CreateFrame("Frame", nil, f)
 t:SetPoint('CENTER', 0, 0)
 t:SetWidth(200) -- Set these to whatever height/width is needed 
-t:SetHeight(200) -- for your Texture
+t:SetHeight(80) -- for your Texture
 t.text = t:CreateFontString(nil, "OVERLAY")
 t.text:SetFont("Fonts\\ARIALN.ttf", 13, "OUTLINE")
 t.text:SetPoint('TOPLEFT', 10, -60)
@@ -76,7 +74,7 @@ t.text:SetPoint('TOPLEFT', 10, -60)
 local t2 = CreateFrame("Frame", nil, f)
 t2:SetPoint('CENTER', 0, 0)
 t2:SetWidth(200) -- Set these to whatever height/width is needed 
-t2:SetHeight(200) -- for your Texture
+t2:SetHeight(80) -- for your Texture
 t2.text = t:CreateFontString(nil, "OVERLAY")
 t2.text:SetFont("Fonts\\ARIALN.ttf", 13, "OUTLINE")
 t2.text:SetPoint('TOPLEFT', 65, -60)
@@ -84,7 +82,7 @@ t2.text:SetPoint('TOPLEFT', 65, -60)
 local t3 = CreateFrame("Frame", nil, f)
 t3:SetPoint('CENTER', 0, 0)
 t3:SetWidth(200) -- Set these to whatever height/width is needed 
-t3:SetHeight(200) -- for your Texture
+t3:SetHeight(80) -- for your Texture
 t3.text = t:CreateFontString(nil, "OVERLAY")
 t3.text:SetFont("Fonts\\ARIALN.ttf", 13, "OUTLINE")
 t3.text:SetPoint('TOPLEFT', 120, -60)
@@ -92,7 +90,7 @@ t3.text:SetPoint('TOPLEFT', 120, -60)
 local t4 = CreateFrame("Frame", nil, f)
 t4:SetPoint('CENTER', 0, 0)
 t4:SetWidth(200) -- Set these to whatever height/width is needed 
-t4:SetHeight(200) -- for your Texture
+t4:SetHeight(80) -- for your Texture
 t4.text = t:CreateFontString(nil, "OVERLAY")
 t4.text:SetFont("Fonts\\ARIALN.ttf", 13, "OUTLINE")
 t4.text:SetPoint('TOPLEFT', 168, -60)
@@ -104,7 +102,7 @@ b:SetPoint('TOPLEFT', 5, -25)
 b:SetWidth(32) -- Set these to whatever height/width is needed 
 b:SetHeight(32) -- for your Texture
 b:SetText("TOTEM")
-b:SetScript('OnClick', function() DEFAULT_CHAT_FRAME:AddMessage("clicked") end)
+-- b:SetScript('OnClick', function() DEFAULT_CHAT_FRAME:AddMessage("clicked") end)
 
 -- Add the icon:
 local icon = b:CreateTexture(nil, "ARTWORK")
@@ -115,7 +113,7 @@ b2:SetPoint('TOPLEFT', 60, -25)
 b2:SetWidth(32) -- Set these to whatever height/width is needed 
 b2:SetHeight(32) -- for your Texture
 b2:SetText("TOTEM")
-b2:SetScript('OnClick', function() DEFAULT_CHAT_FRAME:AddMessage("clicked") end)
+-- b2:SetScript('OnClick', function() DEFAULT_CHAT_FRAME:AddMessage("clicked") end)
 
 -- Add the icon:
 local icon2 = b2:CreateTexture(nil, "ARTWORK")
@@ -126,7 +124,7 @@ b3:SetPoint('TOPLEFT', 115, -25)
 b3:SetWidth(32) -- Set these to whatever height/width is needed 
 b3:SetHeight(32) -- for your Texture
 b3:SetText("TOTEM")
-b3:SetScript('OnClick', function() DEFAULT_CHAT_FRAME:AddMessage("clicked") end)
+-- b3:SetScript('OnClick', function() DEFAULT_CHAT_FRAME:AddMessage("clicked") end)
 
 -- Add the icon:
 local icon3 = b3:CreateTexture(nil, "ARTWORK")
@@ -137,7 +135,7 @@ b4:SetPoint('TOPLEFT', 163, -25)
 b4:SetWidth(32) -- Set these to whatever height/width is needed 
 b4:SetHeight(32) -- for your Texture
 b4:SetText("TOTEM")
-b4:SetScript('OnClick', function() DEFAULT_CHAT_FRAME:AddMessage("clicked") end)
+-- b4:SetScript('OnClick', function() DEFAULT_CHAT_FRAME:AddMessage("clicked") end)
 
 -- Add the icon:
 local icon4 = b4:CreateTexture(nil, "ARTWORK")
@@ -149,10 +147,11 @@ f:RegisterEvent("UNIT_SPELLCAST_SENT");
 f:RegisterEvent("PLAYER_TOTEM_UPDATE");
 
 f:SetScript("OnEvent", function(self, event, arg1, arg2, arg3, arg4)
-    if (event == "UNIT_SPELLCAST_SENT" and arg1 == "player") then
 
-        if string.find(arg2, "Totem") then totem = arg2 end
-    end
+    -- if (event == "UNIT_SPELLCAST_SENT" and arg1 == "player") then
+
+    --  if string.find(arg2, "Totem") then totem = arg2 end
+    -- end
 
     if (event == "PLAYER_TOTEM_UPDATE") then TotemChecker() end
 
@@ -177,29 +176,29 @@ function ButtonIconPlacer(icons, element, durr)
 
     if (element == 1) then
 
-        icon:SetTexture(strjoin("", "Interface\\Icons\\", string.sub(icons, 17)))
         isFire = true
         expirationTimeF = durr
+
+        icon:SetTexture(icons)
 
     end
 
     if (element == 2) then
         isEarth = true
         expirationTimeE = durr
-        icon2:SetTexture(
-            strjoin("", "Interface\\Icons\\", string.sub(icons, 17)))
+
+        icon2:SetTexture(icons)
+
     end
     isWater = true
     if (element == 3) then
         expirationTimeW = durr
-        icon3:SetTexture(
-            strjoin("", "Interface\\Icons\\", string.sub(icons, 17)))
+        icon3:SetTexture(icons)
     end
     isAir = true
     if (element == 4) then
         expirationTimeA = durr
-        icon4:SetTexture(
-            strjoin("", "Interface\\Icons\\", string.sub(icons, 17)))
+        icon4:SetTexture(icons)
     end
 
 end
@@ -213,8 +212,9 @@ frame:SetScript("OnUpdate", function(self, elapsed)
 
     if (isFire and expirationTimeF ~= 0) then
         expirationTimeF = expirationTimeF - elapsed
+        t.text:SetText(math.ceil(expirationTimeF))
 
-        t.text:SetText(math.floor(expirationTimeF))
+        IconFader(expirationTimeF, icon)
 
     else
         icon:SetTexture("")
@@ -223,8 +223,10 @@ frame:SetScript("OnUpdate", function(self, elapsed)
 
     if (isEarth and expirationTimeE ~= 0) then
         expirationTimeE = expirationTimeE - elapsed
+        t2.text:SetText(math.ceil(expirationTimeE))
+        
+        IconFader(expirationTimeE, icon2)
 
-        t2.text:SetText(math.floor(expirationTimeE))
     else
         icon2:SetTexture("")
         t2.text:SetText("")
@@ -232,8 +234,9 @@ frame:SetScript("OnUpdate", function(self, elapsed)
 
     if (isWater and expirationTimeW ~= 0) then
         expirationTimeW = expirationTimeW - elapsed
+        t3.text:SetText(math.ceil(expirationTimeW))
 
-        t3.text:SetText(math.floor(expirationTimeW))
+        IconFader(expirationTimeW, icon3)
     else
         icon3:SetTexture("")
         t3.text:SetText("")
@@ -241,8 +244,9 @@ frame:SetScript("OnUpdate", function(self, elapsed)
 
     if (isAir and expirationTimeA ~= 0) then
         expirationTimeA = expirationTimeA - elapsed
+        t4.text:SetText(math.ceil(expirationTimeA))
 
-        t4.text:SetText(math.floor(expirationTimeA))
+        IconFader(expirationTimeA, icon4)
     else
         icon4:SetTexture("")
         t4.text:SetText("")
@@ -253,3 +257,17 @@ end)
 -- When the frame is shown, reset the update timer
 frame:SetScript("OnShow", function(self) timeElapsed = 0 end)
 
+
+
+
+
+function IconFader(durr, totemIcon)
+
+    if (durr < 10) then
+
+        totemIcon:SetAlpha(0.5)
+    else
+        totemIcon:SetAlpha(1)
+    end
+
+end
